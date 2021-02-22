@@ -34,6 +34,7 @@ Route::post('product/cart', [FrontendController::class, 'cart'])->name('product.
 Route::get('cart/{id}', [FrontendController::class, 'cartview'])->name('cartview');
 Route::post('buy/{id}/{idwanted}', [FrontendController::class, 'buyproduct'])->name('buy');
 Route::post('contact/{id}', [FrontendController::class, 'createContact'])->name('createContact');
+Route::get('delete/{id}', [FrontendController::class, 'destroy']);
 
 
 
