@@ -130,16 +130,6 @@ class FrontendController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     
     public function cart(Request $request)
     {
@@ -203,5 +193,19 @@ class FrontendController extends Controller
         //return redirect('/home')->with($response);
         return back();
 
+    }
+    
+    public function destroy($id)
+    {
+        $wanted = Wanted::find($id);
+        $id = $wanted->id;
+         
+        try {
+            $result = $wanted->delete();
+        } catch(\Exception $e) {
+            $result = 0;
+        }
+        $response = ['op' => 'Destroy', 'r' => $result, 'id' => $id];
+        return back();
     }
 }
