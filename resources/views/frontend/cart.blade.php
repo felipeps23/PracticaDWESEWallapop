@@ -123,6 +123,7 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                                 <th class="hidden-xs">State</th>
                                 <th class="hidden-xs">Price</th>
                                 <th class="hidden-xs"></th>
+                                <th class="hidden-xs"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -138,9 +139,12 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
                             <td>
                                 <form role="form" action="{{ url('buy/'. $wanted->idproduct .'/'. $wanted->wantid ) }}" method="post" id="createproductoForm" enctype="multipart/form-data" class="product-quantity margin-top-30">
                                     @csrf
-                                    <input type="text" maxlength="1000" minlength="1" required class="form-control" id="state" placeholder="state" name="state" value="Vendido" style="display:none">
+                                    <input type="text" maxlength="1000" minlength="1" required class="form-control" id="state" placeholder="state" name="state" value="Sold" style="display:none">
                                     <button class="btn btn-mod btn-medium btn-round" type="submit">Buy</button>
                                 </form>
+                            </td>
+                            <td>
+                                <a class="btn btn-mod btn-medium btn-round" href="{{ url('delete/'. $wanted->id ) }}">Remove</a>
                             </td>
                         </tr>
                          @endforeach
