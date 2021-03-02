@@ -46,18 +46,114 @@ id -> id del elemento afectado
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>#Id</th>
-            <th>User</th>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Use</th>
-            <th>Price</th>
-            <th>Date</th>
-            <th>State</th>
-            <th>Photo</th>
-            <th>Show</th>
-            <th>Edit</th>
-            <th>Delete</th>
+        <th scope="col">
+            #Id
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 0])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 0])}}">↑</a>
+        </th>
+        <th scope="col">
+            User
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 1])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 1])}}">↑</a>
+        </th>
+        <th scope="col">
+            Category
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 2])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 2])}}">↑</a>
+        </th>
+        <th scope="col">
+            Name
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 3])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 3])}}">↑</a>
+        </th>
+        <th scope="col">
+            Use
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 4])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 4])}}">↑</a>
+        </th>
+        <th scope="col">
+            Price
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 5])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 5])}}">↑</a>
+        </th>
+        <th scope="col">
+            Date
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 6])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 6])}}">↑</a>
+        </th>
+        <th scope="col">
+            State
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'asc',
+                         'orderby' => 7])}}">↓</a>
+            <a href="{{route(
+                        'backend.product.index',
+                        ['search' => $search,
+                         'sort' => 'desc',
+                         'orderby' => 7])}}">↑</a>
+        </th scope="col">
+        <th scope="col">Image</th>
+        <th scope="col">show</th>
+        <th scope="col">edit</th>
+        <th scope="col">delete</th>
         </tr>
     </thead>
     <tbody>
@@ -82,6 +178,11 @@ id -> id del elemento afectado
     @endforeach
     </tbody>
 </table>
+<div class="row">
+   <div class="col-lg-6">
+        {{ $products->links() }}
+    </div>
+</div>
 <form id="formDelete" action="{{ url('backend/product') }}" method="post">
     @method('delete')
     @csrf

@@ -14,10 +14,44 @@ class BackendProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('backend.product.index', ['products' => $products]);
+        // $products = Product::all();
+        // return view('backend.product.index', ['products' => $products]);
+        $order = ['id', 'iduser', 'idcategory', 'name', 'use', 'price', 'date', 'state'];
+        $products = new Product();
+        $rows = 3;
+        if($request->input('rows') != null && is_numeric($request->input('rows'))) {
+            $rows = $request->input('rows');
+        }
+        $search = $request->input('search');
+        if($search != null) {
+            $products = $products->where('name', 'like', '%' . $search . '%')
+                                        ->orWhere('iduser', 'like', '%' . $search . '%')
+                                        ->orWhere('idcategory', 'like', '%' . $search . '%')
+                                        ->orWhere('name', 'like', '%' . $search . '%')
+                                        ->orWhere('price', 'like', '%' . $search . '%')
+                                        ->orWhere('date', 'like', '%' . $search . '%')
+                                        ->orWhere('state', 'like', '%' . $search . '%');
+        }
+        $orderby = $request->input('orderby');
+        $sort = 'asc';
+        if($orderby != null) {
+            if(!isset($order[$orderby])) {
+                $orderby = 0;
+            }
+            $orderbyField = $order[$orderby];
+            if($request->input('sort') != null) {
+                $sort = $request->input('sort');
+                if(!($sort == 'asc' || $sort == 'desc')) {
+                    $sort = 'asc';
+                }
+            }
+            $products = $products->orderby($orderbyField, $sort);
+        }
+        $paginationParameters = ['search' => $search, 'orderby' => $orderby, 'sort' => $sort, 'rows' => $rows];
+        $products = $products->orderBy('id', 'asc')->paginate($rows)->appends($paginationParameters);
+        return view('backend.product.index', array_merge(['products' => $products], $paginationParameters));
     }
 
     /**

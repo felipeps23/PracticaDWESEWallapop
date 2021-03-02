@@ -49,6 +49,7 @@ id -> id del elemento afectado
             <th>#Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Admin</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -59,6 +60,7 @@ id -> id del elemento afectado
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
+            <td>{{ $user->admin }}</td>
             
             <td><a href="{{ url('backend/user/' . $user->id . '/edit') }}">Edit</a></td>
             <td><a href="#" data-id="{{ $user->id }}" class="enlaceBorrar" >Delete</a></td>

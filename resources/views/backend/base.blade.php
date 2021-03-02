@@ -279,12 +279,6 @@
                                       <p>View users</p>
                                     </a>
                                   </li>
-                                  <li class="nav-item">
-                                    <a href="{{ route('backend.user.create') }}" class="nav-link {{ $viewCreateTicket ?? '' }}">
-                                      <i class="fas fa-plus nav-icon"></i>
-                                      <p>Create user</p>
-                                    </a>
-                                  </li>
                                 </ul>
                             </li>
                                 

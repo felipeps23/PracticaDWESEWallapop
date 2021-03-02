@@ -47,8 +47,8 @@ id -> id del elemento afectado
     <thead>
         <tr>
             <th>#Id</th>
-            <th>#UserId</th>
-            <th>#IdProducto</th>
+            <th>Interested user</th>
+            <th>Product</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -57,8 +57,8 @@ id -> id del elemento afectado
     @foreach ($wanteds as $wanted)
         <tr>
             <td>{{ $wanted->id }}</td>
-            <td>{{ $wanted->user->id }}</td>
-            <td>{{ $wanted->idproduct }}</td>
+            <td>{{ $wanted->name }}</td>
+            <td>{{ $wanted->pname }}</td>
             <td><a href="{{ url('backend/wanted/' . $wanted->id . '/edit') }}">Edit</a></td>
             <td><a href="#" data-id="{{ $wanted->id }}" class="enlaceBorrar" >Delete</a></td>
         </tr>

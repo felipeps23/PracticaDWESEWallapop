@@ -34,6 +34,7 @@ Route::post('product/cart', [FrontendController::class, 'cart'])->name('product.
 Route::get('cart/{id}', [FrontendController::class, 'cartview'])->name('cartview');
 Route::post('buy/{id}/{idwanted}', [FrontendController::class, 'buyproduct'])->name('buy');
 Route::post('contact/{id}', [FrontendController::class, 'createContact'])->name('createContact');
+Route::get('delete/{id}', [FrontendController::class, 'destroy']);
 
 
 
@@ -53,10 +54,10 @@ Route::post('email/restore/{id}/{email}', [UserController::class, 'restorePrevio
 
 // Rutas del backend
 
-Route::get('backend', [BackendController::class, 'main'])->name('backend.main')->middleware('auth');
+Route::get('backend', [BackendController::class, 'main'])->name('backend.main')->middleware('auth', 'checkIsAdmin');
 
-Route::resource('backend/category', BackendCategoryController::class, ['names' => 'backend.category'])->middleware('auth');
-Route::resource('backend/product', BackendProductController::class, ['names' => 'backend.product'])->middleware('auth');
-Route::resource('backend/contact', BackendContactController::class, ['names' => 'backend.contact'])->middleware('auth');
-Route::resource('backend/wanted', BackendWantedController::class, ['names' => 'backend.wanted'])->middleware('auth');
-Route::resource('backend/user', BackendUserController::class, ['names' => 'backend.user'])->middleware('auth');
+Route::resource('backend/category', BackendCategoryController::class, ['names' => 'backend.category'])->middleware('auth', 'checkIsAdmin');
+Route::resource('backend/product', BackendProductController::class, ['names' => 'backend.product'])->middleware('auth', 'checkIsAdmin');
+Route::resource('backend/contact', BackendContactController::class, ['names' => 'backend.contact'])->middleware('auth', 'checkIsAdmin');
+Route::resource('backend/wanted', BackendWantedController::class, ['names' => 'backend.wanted'])->middleware('auth', 'checkIsAdmin');
+Route::resource('backend/user', BackendUserController::class, ['names' => 'backend.user'])->middleware('auth', 'checkIsAdmin');

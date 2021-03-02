@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wanted;
 use App\Models\User;
 use App\Models\Product;
+use DB;
 use Illuminate\Http\Request;
 
 class BackendWantedController extends Controller
@@ -16,7 +17,11 @@ class BackendWantedController extends Controller
      */
     public function index()
     {
-        $wanteds = Wanted::all();
+        $product = Product::all();
+        // $wanteds = Wanted::all();
+        $wanteds = DB::select("select wanteds.id, users.name, product.id as idproduct, product.name as pname, product.photo as photo, product.price as price, product.state as state, wanteds.id as wantid from product, wanteds, users 
+                                where wanteds.iduser = users.id 
+                                AND wanteds.idproduct = product.id");
         return view('backend.wanted.index', ['wanteds' => $wanteds]);
     }
 
